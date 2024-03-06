@@ -5,20 +5,20 @@
 //  Created by Tuan Cai on 3/6/24.
 //
 
-import SwiftUI
 import AVFoundation
+import SwiftUI
 import UIKit
 
 struct CameraView: View {
     @StateObject var camera = CameraModel()
     var body: some View {
-        ZStack{
-            CameraPreview(camera: camera).ignoresSafeArea(.all, edges: .all)
-            VStack{
-                if camera.isTaken {
+        ZStack {
+            CameraPreview(camera: self.camera).ignoresSafeArea(.all, edges: .all)
+            VStack {
+                if self.camera.isTaken {
                     HStack {
                         Spacer()
-                        Button(action: camera.reTake, label: {
+                        Button(action: self.camera.reTake, label: {
                             Image(systemName: "arrow.triangle.2.circlepath.camera").foregroundColor(.black).padding().background(Color.white).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
                         }).padding(.trailing, 10)
                     }
@@ -26,44 +26,46 @@ struct CameraView: View {
                 }
                 Spacer()
                 HStack {
-                    
-                    if camera.isTaken{
-                        Button(action: {if !camera.isSaved{camera.savePic()}}, label: {
-                            Text(camera.isSaved ? "Saved" : "Save").foregroundColor(.black).fontWeight(.semibold).padding(.vertical, 10).padding(.horizontal, 20).background(Color.white).clipShape(Capsule())
+                    if self.camera.isTaken {
+                        Button(action: { if !self.camera.isSaved { self.camera.savePic() }}, label: {
+                            Text(self.camera.isSaved ? "Saved" : "Save").foregroundColor(.black).fontWeight(.semibold).padding(.vertical, 10).padding(.horizontal, 20).background(Color.white).clipShape(Capsule())
                         }).padding(.leading)
                         Spacer()
                     } else {
-                        Button(action: camera.takePic, label: {
+                        Button(action: self.camera.takePic, label: {
                             ZStack {
-                                Circle().fill(Color.white).frame(width:65, height: 65 )
-                                Circle().stroke(Color.white, lineWidth:2).frame(width:75,  height: 75)
+                                Circle().fill(Color.white).frame(width: 65, height: 65)
+                                Circle().stroke(Color.white, lineWidth: 2).frame(width: 75, height: 75)
                             }
                         })
                     }
                 }.frame(height: 75)
+                    .padding(.bottom, 20)
             }
         }.onAppear(perform: {
-            camera.Check()
+            self.camera.Check()
         })
     }
 }
+
 import Foundation
+
 class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var isTaken = false
     @Published var session = AVCaptureSession()
     @Published var alert = false
     @Published var output = AVCapturePhotoOutput()
-    @Published var preview : AVCaptureVideoPreviewLayer!
+    @Published var preview: AVCaptureVideoPreviewLayer!
     @Published var isSaved = false
     @Published var picData = Data(count: 0)
     func Check() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
-            //Setting up session
-            setUp()
+            // Setting up session
+            self.setUp()
             return
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) {(status) in
+            AVCaptureDevice.requestAccess(for: .video) { status in
                 if status {
                     self.setUp()
                 }
@@ -75,11 +77,12 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             return
         }
     }
+    
     func setUp() {
         // setting up the camera
         do {
             self.session.beginConfiguration()
-            let device = AVCaptureDevice.default(.builtInDualCamera,for: .video,position: .back)
+            let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back)
             let input = try AVCaptureDeviceInput(device: device!)
             if self.session.canAddInput(input) {
                 self.session.addInput(input)
@@ -92,23 +95,24 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             print(error.localizedDescription)
         }
     }
+    
     func takePic() {
         DispatchQueue.global(qos: .background).async {
             self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
             DispatchQueue.main.async {
-                withAnimation{self.isTaken.toggle()}
+                withAnimation { self.isTaken.toggle() }
             }
         }
     }
-
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-//        print("pic taken...")
+        //        print("pic taken...")
         if error != nil {
             print(error?.localizedDescription ?? "Unknown error")
             self.session.stopRunning() // Stop the session after the photo capture process has completed
             return
         }
-
+        
         guard let imageData = photo.fileDataRepresentation() else {
             print("Unable to get file data representation")
             self.session.stopRunning()
@@ -123,7 +127,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         DispatchQueue.global(qos: .background).async {
             self.session.startRunning()
             DispatchQueue.main.async {
-                withAnimation{self.isTaken.toggle()}
+                withAnimation { self.isTaken.toggle() }
                 // clearing
                 self.isSaved = false
             }
@@ -134,23 +138,24 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         let image = UIImage(data: self.picData)!
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
         self.isSaved = true
-//        print(type(of: self.picData))
-//        print(self.picData)
-//        print("save successfully ....")
+        //        print(type(of: self.picData))
+        //        print(self.picData)
+        //        print("save successfully ....")
     }
 }
 
-struct CameraPreview: UIViewRepresentable{
+struct CameraPreview: UIViewRepresentable {
     @ObservedObject var camera: CameraModel
-    func makeUIView(context: Context) ->  UIView{
+    func makeUIView(context: Context) -> UIView {
         let view = UIViewType(frame: UIScreen.main.bounds)
-        camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
-        camera.preview.frame = view.frame
-        camera.preview.videoGravity = .resizeAspectFill
-        view.layer.addSublayer(camera.preview)
-        camera.session.startRunning()
+        self.camera.preview = AVCaptureVideoPreviewLayer(session: self.camera.session)
+        self.camera.preview.frame = view.frame
+        self.camera.preview.videoGravity = .resizeAspectFill
+        view.layer.addSublayer(self.camera.preview)
+        self.camera.session.startRunning()
         return view
     }
+    
     func updateUIView(_ uiView: UIView, context: Context) {
         // No need to add any code here
     }
