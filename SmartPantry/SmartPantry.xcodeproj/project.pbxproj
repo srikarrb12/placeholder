@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35EAB84C2B983020009E462D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAB84B2B983020009E462D /* CameraView.swift */; };
 		4E2E8C742B967F6B002A0840 /* SmartPantryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */; };
 		4E2E8C762B967F6B002A0840 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E2E8C752B967F6B002A0840 /* ContentView.swift */; };
 		4E2E8C782B967F6C002A0840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4E2E8C772B967F6C002A0840 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 
 /* Begin PBXFileReference section */
 		3587D5742B9806F900D3F91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		35EAB84B2B983020009E462D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4E2E8C702B967F6B002A0840 /* SmartPantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPantryApp.swift; sourceTree = "<group>"; };
 		4E2E8C752B967F6B002A0840 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				3587D5742B9806F900D3F91D /* Info.plist */,
 				4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */,
 				4E2E8C752B967F6B002A0840 /* ContentView.swift */,
+				35EAB84B2B983020009E462D /* CameraView.swift */,
 				4E2E8C772B967F6C002A0840 /* Assets.xcassets */,
 				4E2E8C792B967F6C002A0840 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35EAB84C2B983020009E462D /* CameraView.swift in Sources */,
 				4E2E8C762B967F6B002A0840 /* ContentView.swift in Sources */,
 				4E2E8C742B967F6B002A0840 /* SmartPantryApp.swift in Sources */,
 			);
