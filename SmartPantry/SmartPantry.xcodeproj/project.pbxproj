@@ -14,6 +14,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3587D5742B9806F900D3F91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4E2E8C702B967F6B002A0840 /* SmartPantry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPantry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPantryApp.swift; sourceTree = "<group>"; };
 		4E2E8C752B967F6B002A0840 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		4E2E8C722B967F6B002A0840 /* SmartPantry */ = {
 			isa = PBXGroup;
 			children = (
+				3587D5742B9806F900D3F91D /* Info.plist */,
 				4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */,
 				4E2E8C752B967F6B002A0840 /* ContentView.swift */,
 				4E2E8C772B967F6C002A0840 /* Assets.xcassets */,
@@ -272,9 +274,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SmartPantry/Preview Content\"";
-				DEVELOPMENT_TEAM = 3L8A4XGWUV;
+				DEVELOPMENT_TEAM = QLMBGGZS94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartPantry/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -285,7 +290,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = longlam.SmartPantry;
+				PRODUCT_BUNDLE_IDENTIFIER = tuancai.SmartPantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -301,9 +306,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SmartPantry/Preview Content\"";
-				DEVELOPMENT_TEAM = 3L8A4XGWUV;
+				DEVELOPMENT_TEAM = QLMBGGZS94;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartPantry/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -314,7 +322,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = longlam.SmartPantry;
+				PRODUCT_BUNDLE_IDENTIFIER = tuancai.SmartPantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
