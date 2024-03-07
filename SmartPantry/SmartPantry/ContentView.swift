@@ -10,12 +10,15 @@ import SwiftUI
 import UIKit
 
 struct ContentView: View {
+    @StateObject var pantryItemManager = PantryItemManager()
     var body: some View {
         TabView {
             PantryView()
                 .tabItem { Label("Home", systemImage: "house") }
+                .environmentObject(pantryItemManager)
             CameraView()
                 .tabItem { Label("Scan", systemImage: "camera.metering.matrix") }
+                .environmentObject(pantryItemManager)
             NotificationView()
                 .tabItem { Label("Notification", systemImage: "bell") }
             ProfileView()

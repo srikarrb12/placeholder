@@ -44,5 +44,5 @@ struct PantrySection: View {
 }
 
 #Preview {
-    PantrySection(itemList: [PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), PantryItemModel(id: "2", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), PantryItemModel(id: "3", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3")], sectionTitle: REFRIGERATOR_SECTION_TITLE)
+    PantrySection(itemList: [PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3"), PantryItemModel(id: "2", itemTitle: "Apple", loggedDate: Date(), quantity: "3"), PantryItemModel(id: "3", itemTitle: "Apple", loggedDate: Date(), quantity: "3")], sectionTitle: REFRIGERATOR_SECTION_TITLE)
 }

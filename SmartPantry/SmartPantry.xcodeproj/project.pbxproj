@@ -20,6 +20,7 @@
 		4E72212E2B98EA6A00D9A762 /* TitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E72212D2B98EA6A00D9A762 /* TitleBar.swift */; };
 		4E7221352B98FD2100D9A762 /* PantrySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7221342B98FD2100D9A762 /* PantrySection.swift */; };
 		4E7221392B991F7E00D9A762 /* PantrySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7221382B991F7E00D9A762 /* PantrySectionModel.swift */; };
+		4E72213B2B9A120F00D9A762 /* PantryItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E72213A2B9A120F00D9A762 /* PantryItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4E72212D2B98EA6A00D9A762 /* TitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBar.swift; sourceTree = "<group>"; };
 		4E7221342B98FD2100D9A762 /* PantrySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantrySection.swift; sourceTree = "<group>"; };
 		4E7221382B991F7E00D9A762 /* PantrySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantrySectionModel.swift; sourceTree = "<group>"; };
+		4E72213A2B9A120F00D9A762 /* PantryItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				4E25F2852B980FF80073DE98 /* PantryView.swift */,
 				4E72212B2B98E67700D9A762 /* NotificationView.swift */,
 				35EAB84B2B983020009E462D /* CameraView.swift */,
+				4E72213A2B9A120F00D9A762 /* PantryItemManager.swift */,
 				4E2E8C772B967F6C002A0840 /* Assets.xcassets */,
 				4E2E8C792B967F6C002A0840 /* Preview Content */,
 			);
@@ -192,6 +195,7 @@
 				4E7221392B991F7E00D9A762 /* PantrySectionModel.swift in Sources */,
 				4E59DAAD2B98562D009C7A63 /* ProfileView.swift in Sources */,
 				4E72212E2B98EA6A00D9A762 /* TitleBar.swift in Sources */,
+				4E72213B2B9A120F00D9A762 /* PantryItemManager.swift in Sources */,
 				4E72212A2B98E0CA00D9A762 /* PantryItemModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SmartPantry/Preview Content\"";
-				DEVELOPMENT_TEAM = QLMBGGZS94;
+				DEVELOPMENT_TEAM = 3L8A4XGWUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmartPantry/Info.plist;
@@ -342,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tuancai.SmartPantry;
+				PRODUCT_BUNDLE_IDENTIFIER = longlam.SmartPantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -358,7 +362,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SmartPantry/Preview Content\"";
-				DEVELOPMENT_TEAM = QLMBGGZS94;
+				DEVELOPMENT_TEAM = 3L8A4XGWUV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SmartPantry/Info.plist;
@@ -374,7 +378,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = tuancai.SmartPantry;
+				PRODUCT_BUNDLE_IDENTIFIER = longlam.SmartPantry;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

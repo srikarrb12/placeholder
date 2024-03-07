@@ -11,6 +11,8 @@ import UIKit
 
 struct CameraView: View {
     @StateObject var camera = CameraModel()
+    @EnvironmentObject var pantryItemManager: PantryItemManager
+    
     var body: some View {
         ZStack {
             CameraPreview(camera: self.camera).ignoresSafeArea(.all, edges: .all)
@@ -27,7 +29,7 @@ struct CameraView: View {
                 Spacer()
                 HStack {
                     if self.camera.isTaken {
-                        Button(action: { if !self.camera.isSaved { self.camera.savePic() }}, label: {
+                        Button(action: { if !self.camera.isSaved { self.camera.savePic(pantryItemManager: pantryItemManager) }}, label: {
                             Text(self.camera.isSaved ? "Saved" : "Save").foregroundColor(.black).fontWeight(.semibold).padding(.vertical, 10).padding(.horizontal, 20).background(Color.white).clipShape(Capsule())
                         }).padding(.leading)
                         Spacer()
@@ -58,6 +60,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     @Published var preview: AVCaptureVideoPreviewLayer!
     @Published var isSaved = false
     @Published var picData = Data(count: 0)
+    
     func Check() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
@@ -106,7 +109,6 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     }
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        //        print("pic taken...")
         if error != nil {
             print(error?.localizedDescription ?? "Unknown error")
             self.session.stopRunning() // Stop the session after the photo capture process has completed
@@ -119,7 +121,6 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             return
         }
         self.picData = imageData
-//        print(self.picData)
         self.session.stopRunning()
     }
     
@@ -134,21 +135,9 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-
-
-    struct GroceryItem: Codable {
-        let name: String
-        let quantity: Int
-
-    }
-    struct Response: Codable {
-        let groceries: [GroceryItem]
-    }
-    
-    func savePic() {
-        print("savePic is called")
-        // Modify this URL to your local URL 
-        guard let url = URL(string: "http://10.0.0.80:5001/get-pantry") else {
+    func savePic(pantryItemManager: PantryItemManager) {
+        // Modify this URL to your local URL
+        guard let url = URL(string: "http://100.111.64.193:5001/get-pantry") else {
             print("Invalid URL")
             return
         }
@@ -172,30 +161,33 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         request.httpBody = body as Data
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
-                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
-                        return
-                    }
+            guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
+                print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
                     
-                    if response.statusCode == 200 {
-                        print(type(of: data))
-                        if let responseString = String(data: data, encoding: .utf8) {
-                            print("Convert this into something you need:" + responseString)
-                            
-                        } else {
-                            print("Failed to convert response data to string")
-                        }
-                        print("successfully converted to string")
-                        self.isSaved = true
-                  
-                    } else {
-                        print("Failed to save image. Status code: \(response.statusCode)")
+            if response.statusCode == 200 {
+                let decoder = JSONDecoder()
+                do {
+                    let list = try decoder.decode([PantryItemJson].self, from: data)
+                    DispatchQueue.main.async {
+                        pantryItemManager.addPantry(pantriesJson: list)
+                        print("This is manager")
+                        print(pantryItemManager.pantries)
                     }
+                    print(list)
+                } catch {
+                    print(String(describing: error))
                 }
+                self.isSaved = true
+                  
+            } else {
+                print("Failed to process image. Status code: \(response.statusCode)")
+            }
+        }
         
         task.resume()
     }
-
 }
 
 struct CameraPreview: UIViewRepresentable {

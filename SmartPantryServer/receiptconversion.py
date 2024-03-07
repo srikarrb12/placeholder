@@ -1,5 +1,7 @@
 import cohere
 from ocr import ocr
+import json
+from word2number import w2n
 
 api_key = 'QYlfXcdxXQECRIFMPQOSG2ZRUhYX1qVifk2RbaHR'
 co = cohere.Client(api_key)
@@ -18,7 +20,21 @@ def convert(image_bytes):
         frequency_penalty=0,  # Decreases the likelihood of repetition
         presence_penalty=0)  # Penalizes new tokens based on their existing presence
 
-    return response.generations[0].text
+    resJson = json.loads(response.generations[0].text[7:len(response.generations[0].text)-3])
+    print(resJson)
+    resJsonCleanType = []
+    try:
+        for item in resJson:
+            item["Quantity"] = int(item["Quantity"])
+            resJsonCleanType.append(item)
+        
+    except:
+       for item in resJson:
+            item["Quantity"] = w2n.word_to_num(item["Quantity"].toLowerCase())
+            resJsonCleanType.append(item)
+
+    print(resJsonCleanType)
+    return resJsonCleanType
 
 # image_path = 'be8acd61cd438a619ca2e40390657ba0.jpg'
 # with open(image_path, 'rb') as image_file:

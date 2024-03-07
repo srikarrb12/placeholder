@@ -5,6 +5,7 @@
 //  Created by Long Lam on 3/5/24.
 //
 
+import Foundation
 import SwiftUI
 
 struct PantryItem: View {
@@ -29,7 +30,7 @@ struct PantryItem: View {
                         .font(.headline)
                         .foregroundColor(.black)
                         .fontWeight(/*@START_MENU_TOKEN@*/ .bold/*@END_MENU_TOKEN@*/)
-                    Text(pantryItem.loggedDate)
+                    Text(calculateDayInterval(start: pantryItem.loggedDate, end: Date()))
                         .fontWeight(.thin)
                         .font(.footnote)
                         .foregroundColor(.black)
@@ -48,8 +49,21 @@ struct PantryItem: View {
         .cornerRadius(3.0)
         .background(Color(.white)).clipShape(RoundedRectangle(cornerRadius: 15))
     }
+
+    func calculateDayInterval(start: Date, end: Date) -> String {
+        let daysBetween = Calendar.current.dateComponents([.day], from: start, to: end).day
+        var stringDaysBetween = ""
+        if daysBetween! <= 0 {
+            stringDaysBetween = "Today"
+        } else if daysBetween! == 1 {
+            stringDaysBetween = "1 day ago"
+        } else {
+            stringDaysBetween = String(daysBetween!) + " days ago"
+        }
+        return stringDaysBetween
+    }
 }
 
 #Preview {
-    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
+    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3"), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
 }

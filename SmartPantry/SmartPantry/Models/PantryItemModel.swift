@@ -10,6 +10,11 @@ import Foundation
 struct PantryItemModel: Identifiable {
     var id: String
     var itemTitle: String
-    var loggedDate: String
+    var loggedDate: Date
     var quantity: String
+}
+
+struct PantryItemJson: Codable {
+    let Name: String
+    let Quantity: Int
 }
