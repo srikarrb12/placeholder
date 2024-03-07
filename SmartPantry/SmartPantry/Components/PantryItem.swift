@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct PantryItem: View {
-    var itemTitle: String
-    var loggedDate: String
-    var quantity: String
+    var pantryItem: PantryItemModel
+    var pantryItemSectionTitle: PantrySectionModel
     var body: some View {
-        HStack(alignment: .center, spacing: 120) {
+        HStack(alignment: .center) {
             HStack {
                 VStack {
-                    Image(systemName: "refrigerator")
+                    Image(systemName: pantryItemSectionTitle.systemImageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.red)
@@ -26,29 +25,31 @@ struct PantryItem: View {
                 .frame(maxHeight: 80)
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(itemTitle)
-                        .font(.title2)
+                    Text(pantryItem.itemTitle)
+                        .font(.headline)
                         .foregroundColor(.black)
                         .fontWeight(/*@START_MENU_TOKEN@*/ .bold/*@END_MENU_TOKEN@*/)
-                    Text(loggedDate)
+                    Text(pantryItem.loggedDate)
                         .fontWeight(.thin)
-                        .font(.body)
+                        .font(.footnote)
                         .foregroundColor(.black)
-                }.frame(maxWidth: 120)
-            }
+                }.frame(maxWidth: .infinity, alignment: .leading)
+            }.frame(maxWidth: .infinity, alignment: .leading)
 
-            Text(quantity + "pc")
+            Text(pantryItem.quantity + "pc")
                 .foregroundColor(.black)
-                .font(.title3)
+                .font(.subheadline)
                 .fontWeight(.semibold)
                 .padding(10)
+                .frame(minWidth: 60, alignment: .trailing)
         }
-        .frame(minWidth: 360)
+        .padding([.trailing, .leading], 10)
+        .frame(maxWidth: 400)
         .cornerRadius(3.0)
         .background(Color(.white)).clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
 #Preview {
-    PantryItem(itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3")
+    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
 }

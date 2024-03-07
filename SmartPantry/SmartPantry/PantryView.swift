@@ -8,44 +8,19 @@
 import SwiftUI
 
 struct PantryView: View {
-    @State private var text = ""
+    let itemList = [PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), PantryItemModel(id: "2", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3"), PantryItemModel(id: "3", itemTitle: "Apple", loggedDate: "05/01/2024", quantity: "3")]
     var body: some View {
         VStack(spacing: 0) {
-            HStack(alignment: .center, spacing: 120) {
-                Text("SmartPantry")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .padding(.bottom, 10)
+            TitleBar()
 
-                HStack(spacing: 25) {
-                    Image(systemName: "magnifyingglass")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 23)
-                        .foregroundColor(.white)
-                        .padding(.bottom, 10)
-
-                    Image(systemName: "line.3.horizontal.decrease")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(maxHeight: 18)
-                        .foregroundColor(.white)
-                        .padding(.bottom, 10)
-                }
+            ScrollView {
+                PantrySection(itemList: itemList, sectionTitle: REFRIGERATOR_SECTION_TITLE)
             }
-            .frame(maxWidth: .infinity)
-            .background(Color(.red))
-
-            VStack(spacing: 15) {
-                PantryItem(itemTitle: "Apple Pia", loggedDate: "4 day(s) ago", quantity: "3")
-                PantryItem(itemTitle: "Apple", loggedDate: "1 day(s) ago", quantity: "3")
-                PantryItem(itemTitle: "Apple", loggedDate: "5 day(s) ago", quantity: "3")
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(white: 0.92))
+            .frame(maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
+            .background(Color(white: 0.95))
         }
         .frame(maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
+        .background(Color(.white))
     }
 }
 
