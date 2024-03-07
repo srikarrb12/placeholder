@@ -30,7 +30,7 @@ def convert(image_bytes):
         
     except:
        for item in resJson:
-            item["Quantity"] = w2n.word_to_num(item["Quantity"].toLowerCase())
+            item["Quantity"] = w2n.word_to_num(item["Quantity"].lower())
             resJsonCleanType.append(item)
 
     print(resJsonCleanType)
