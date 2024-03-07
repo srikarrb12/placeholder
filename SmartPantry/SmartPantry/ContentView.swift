@@ -16,6 +16,8 @@ struct ContentView: View {
                 .tabItem { Label("Home", systemImage: "house") }
             CameraView()
                 .tabItem { Label("Scan", systemImage: "camera.metering.matrix") }
+            NotificationView()
+                .tabItem { Label("Notification", systemImage: "bell") }
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person") }
         }
@@ -24,6 +26,8 @@ struct ContentView: View {
                minHeight: 300, maxHeight: .infinity)
         .onAppear {
             UITabBar.appearance().backgroundColor = UIColor(.white)
+            UITabBar.appearance().unselectedItemTintColor =
+                UIColor(white: 0.1, alpha: 0.7)
         }
     }
 }

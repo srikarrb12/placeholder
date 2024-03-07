@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  NotificationView.swift
 //  SmartPantry
 //
 //  Created by Long Lam on 3/6/24.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct NotificationView: View {
     var body: some View {
-        Text("Your profile!")
+        Text("Your notification!")
     }
 }
 
 #Preview {
-    ProfileView()
+    NotificationView()
 }
