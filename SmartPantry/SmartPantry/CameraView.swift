@@ -119,7 +119,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
             return
         }
         self.picData = imageData
-        print(self.picData)
+//        print(self.picData)
         self.session.stopRunning()
     }
     
@@ -134,14 +134,68 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    func savePic() {
-        let image = UIImage(data: self.picData)!
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        self.isSaved = true
-        //        print(type(of: self.picData))
-        //        print(self.picData)
-        //        print("save successfully ....")
+
+
+    struct GroceryItem: Codable {
+        let name: String
+        let quantity: Int
+
     }
+    struct Response: Codable {
+        let groceries: [GroceryItem]
+    }
+    
+    func savePic() {
+        print("savePic is called")
+        // Modify this URL to your local URL 
+        guard let url = URL(string: "http://10.0.0.80:5001/get-pantry") else {
+            print("Invalid URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        let imageData = self.picData
+        let body = NSMutableData()
+        
+        body.append("--\(boundary)\r\n".data(using: .utf8)!)
+        body.append("Content-Disposition: form-data; name=\"image\"; filename=\"image.jpeg\"\r\n".data(using: .utf8)!)
+        body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+        body.append(imageData)
+        body.append("\r\n".data(using: .utf8)!)
+        body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body as Data
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, let response = response as? HTTPURLResponse, error == nil else {
+                        print("Error: \(error?.localizedDescription ?? "Unknown error")")
+                        return
+                    }
+                    
+                    if response.statusCode == 200 {
+                        print(type(of: data))
+                        if let responseString = String(data: data, encoding: .utf8) {
+                            print("Convert this into something you need:" + responseString)
+                            
+                        } else {
+                            print("Failed to convert response data to string")
+                        }
+                        print("successfully converted to string")
+                        self.isSaved = true
+                  
+                    } else {
+                        print("Failed to save image. Status code: \(response.statusCode)")
+                    }
+                }
+        
+        task.resume()
+    }
+
 }
 
 struct CameraPreview: UIViewRepresentable {
