@@ -23,4 +23,5 @@ struct PantryItemJson: Codable {
 struct PantryItemQuantityJson: Codable {
     let value: String
     let unit: String
+    let ttl: Int
 }
