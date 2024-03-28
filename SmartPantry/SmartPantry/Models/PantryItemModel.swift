@@ -15,6 +15,12 @@ struct PantryItemModel: Identifiable {
 }
 
 struct PantryItemJson: Codable {
-    let Name: String
-    let Quantity: Int
+    let name: String
+    let quantity: PantryItemQuantityJson
+    let price: String
+}
+
+struct PantryItemQuantityJson: Codable {
+    let value: String
+    let unit: String
 }

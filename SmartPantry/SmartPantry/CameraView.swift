@@ -29,7 +29,7 @@ struct CameraView: View {
                 Spacer()
                 HStack {
                     if self.camera.isTaken {
-                        Button(action: { if !self.camera.isSaved { self.camera.savePic(pantryItemManager: pantryItemManager) }}, label: {
+                        Button(action: { if !self.camera.isSaved { self.camera.savePic(pantryItemManager: self.pantryItemManager) }}, label: {
                             Text(self.camera.isSaved ? "Saved" : "Save").foregroundColor(.black).fontWeight(.semibold).padding(.vertical, 10).padding(.horizontal, 20).background(Color.white).clipShape(Capsule())
                         }).padding(.leading)
                         Spacer()
@@ -137,7 +137,7 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
     
     func savePic(pantryItemManager: PantryItemManager) {
         // Modify this URL to your local URL
-        guard let url = URL(string: "http://100.111.64.193:5001/get-pantry") else {
+        guard let url = URL(string: "https://alpine-dogfish-402322.ue.r.appspot.com/get-pantry") else {
             print("Invalid URL")
             return
         }

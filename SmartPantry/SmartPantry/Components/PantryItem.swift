@@ -15,15 +15,14 @@ struct PantryItem: View {
         HStack(alignment: .center) {
             HStack {
                 VStack {
-                    Image(systemName: pantryItemSectionTitle.systemImageName)
+                    Image(uiImage: getFoodImage(urlString: "https://spoonacular.com/cdn/ingredients_100x100/apple.jpg"))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.red)
-                        .padding(10)
                 }
                 .background(Color(white: 0.95)).clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(10)
-                .frame(maxHeight: 80)
+                .frame(maxHeight: 90)
 
                 VStack(alignment: .leading, spacing: 5) {
                     Text(pantryItem.itemTitle)
@@ -61,6 +60,19 @@ struct PantryItem: View {
             stringDaysBetween = String(daysBetween!) + " days ago"
         }
         return stringDaysBetween
+    }
+
+    func getFoodImage(urlString: String) -> UIImage {
+        let image: UIImage
+        do {
+            let url = URL(string: urlString)
+            let data = try Data(contentsOf: url!)
+            image = UIImage(data: data)!
+        } catch {
+            image = UIImage(systemName: pantryItemSectionTitle.systemImageName)!
+        }
+        return image
+        
     }
 }
 

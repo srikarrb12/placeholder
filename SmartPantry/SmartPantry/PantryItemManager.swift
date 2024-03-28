@@ -12,7 +12,7 @@ class PantryItemManager: ObservableObject {
     
     func addPantry(pantriesJson: [PantryItemJson]) {
         for item in pantriesJson {
-            pantries.append(PantryItemModel(id: UUID().uuidString, itemTitle: item.Name, loggedDate: Date(), quantity: String(item.Quantity)))
+            pantries.append(PantryItemModel(id: UUID().uuidString, itemTitle: item.name, loggedDate: Date(), quantity: item.quantity.value))
         }
     }
     
