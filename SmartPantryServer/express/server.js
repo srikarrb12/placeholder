@@ -63,7 +63,7 @@ app.post("/get-pantry", async (req, res) => {
         quantity: {
             value: quantity or weight (type: string),
             unit: item for non-weight quantity or a weight unit found on receipt (type: string),
-            ttl: average shelf life of the grocery item in days (type: integer)
+            ttl: storage time of the food item with same or similar name in days by usda, if not found then give the general recommendation shelf life in days (type: integer)
         },
         price: price of each food item with no unit (type: string),
     }]
