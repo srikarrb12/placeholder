@@ -26,7 +26,7 @@ struct ContentView: View {
             ProfileView()
                 .tabItem { Label("Profile", systemImage: "person") }
         }
-        .accentColor(.red)
+        .accentColor(Color("Green"))
         .frame(minWidth: 300, maxWidth: .infinity,
                minHeight: 300, maxHeight: .infinity)
         .onAppear {

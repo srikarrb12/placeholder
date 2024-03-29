@@ -9,12 +9,14 @@ import SwiftUI
 
 struct PantryView: View {
     @EnvironmentObject var pantryItemManager: PantryItemManager
-    
+
     var body: some View {
         VStack(spacing: 0) {
             TitleBar()
+                .background(Color(white: 0.95))
 
             ScrollView {
+                SloganCard()
                 PantrySection(itemList: pantryItemManager.pantries, sectionTitle: REFRIGERATOR_SECTION_TITLE)
             }
             .frame(maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
@@ -27,4 +29,5 @@ struct PantryView: View {
 
 #Preview {
     PantryView()
+        .environmentObject(PantryItemManager())
 }
