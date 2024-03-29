@@ -12,11 +12,22 @@ class PantryItemManager: ObservableObject {
     
     func addPantry(pantriesJson: [PantryItemJson]) {
         for item in pantriesJson {
-            pantries.append(PantryItemModel(id: UUID().uuidString, itemTitle: item.name, loggedDate: Date(), quantity: item.quantity.value))
+            pantries.append(PantryItemModel(id: UUID().uuidString, itemTitle: item.name, loggedDate: Date(), quantity: item.quantity.value, expiredDate:  Calendar.current.date(byAdding: .day, value: item.quantity.ttl + 10, to: Date())!))
         }
+     
     }
     
     func clearPantry() {
         pantries = []
     }
+    func getExpired() -> [PantryItemModel] {
+        var shuffledPantries = pantries.shuffled()
+        
+        if shuffledPantries.count >= 3 {
+            return Array(shuffledPantries.prefix(3))
+        } else {
+            return shuffledPantries
+        }
+    }
+
 }

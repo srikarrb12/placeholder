@@ -77,5 +77,5 @@ struct PantryItem: View {
 }
 
 #Preview {
-    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3"), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
+    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3", expiredDate: Date.now), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
 }

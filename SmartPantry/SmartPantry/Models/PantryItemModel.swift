@@ -12,6 +12,7 @@ struct PantryItemModel: Identifiable {
     var itemTitle: String
     var loggedDate: Date
     var quantity: String
+    var expiredDate: Date
 }
 
 struct PantryItemJson: Codable {
