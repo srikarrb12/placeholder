@@ -20,18 +20,19 @@ struct TitleBar: View {
                     .fontWeight(.bold)
                     .foregroundColor(Color("Green"))
             }
-            .frame(maxWidth: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/, maxHeight: 60)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/, maxHeight: 60, alignment: .leading)
             .padding([.bottom, .top], 10)
-            
+            .padding(.leading, 20)
+
             Image(systemName: "gearshape")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(maxHeight: 25)
                 .foregroundColor(.black)
                 .padding([.bottom, .top], 10)
-                .padding(.leading, 50)
+                .padding(.leading, 20)
                 .font(Font.system(size: 60, weight: .semibold))
-            
+
             Image(systemName: "magnifyingglass")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -41,12 +42,12 @@ struct TitleBar: View {
                 .padding(.trailing, 20)
                 .font(Font.system(size: 60, weight: .semibold))
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity)
         .background(Color(.white))
         .cornerRadius(15)
         .shadow(radius: 3)
-        .padding([.leading, .trailing], 20)
-        .padding(.bottom, 5)
+        .padding([.leading, .trailing], 15.0)
+        .padding([.bottom, .top], 5)
     }
 }
 

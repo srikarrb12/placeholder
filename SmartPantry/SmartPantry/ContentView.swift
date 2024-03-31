@@ -17,7 +17,8 @@ struct ContentView: View {
                 .tabItem { Label("Home", systemImage: "house") }
                 .environmentObject(pantryItemManager)
             ExpirationView()
-                .tabItem { Label("Expiration", systemImage: "calendar.badge.exclamationmark") }.environmentObject(pantryItemManager)
+                .tabItem { Label("Expiration", systemImage: "calendar.badge.exclamationmark") }
+                .environmentObject(pantryItemManager)
             CameraView()
                 .tabItem { Label("Scan", systemImage: "camera.metering.matrix") }
                 .environmentObject(pantryItemManager)

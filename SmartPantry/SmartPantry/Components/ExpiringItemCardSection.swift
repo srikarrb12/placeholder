@@ -9,22 +9,23 @@ import SwiftUI
 
 
 
-struct CardView: View {
+struct ExpiringItemCardSection: View {
     @EnvironmentObject var pantryItemManager: PantryItemManager
     
     var body: some View {
-        let items: [PantryItemModel] = pantryItemManager.getExpired()
+        let items: [PantryItemModel] = pantryItemManager.getExpiringItem()
         VStack(spacing: 0) {
-            TitleBar()
             TabView {
                 ForEach(items) { item in
-                    FeaturedItemView(title: item.itemTitle, expirationDate: item.expiredDate)
+                    ExpiringItemCardStyle(title: item.itemTitle, expirationDate: item.expiredDate)
                         .padding(.top, 10)
                         .padding(.horizontal, 15)
                 }
             }
+            .accentColor(Color("Green"))
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
         }
+        .background(Color(white: 0.95))
         .frame(maxHeight: /*@START_MENU_TOKEN@*/ .infinity/*@END_MENU_TOKEN@*/)
         .background(Color(.white))
     }
@@ -32,7 +33,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView().environmentObject(PantryItemManager())
+        ExpiringItemCardSection().environmentObject(PantryItemManager())
     }
 }
 

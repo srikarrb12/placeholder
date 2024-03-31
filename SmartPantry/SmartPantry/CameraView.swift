@@ -172,7 +172,6 @@ class CameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDelegate {
                     let list = try decoder.decode([PantryItemJson].self, from: data)
                     DispatchQueue.main.async {
                         pantryItemManager.addPantry(pantriesJson: list)
-                        print("This is manager")
                         print(pantryItemManager.pantries)
                     }
                     print(list)

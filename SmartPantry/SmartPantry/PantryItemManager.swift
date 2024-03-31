@@ -17,11 +17,17 @@ class PantryItemManager: ObservableObject {
      
     }
     
+    func addPantry(pantriesInput: [PantryItemModel]) {
+        for item in pantriesInput {
+            pantries.append(item)
+        }
+    }
+    
     func clearPantry() {
         pantries = []
     }
-    func getExpired() -> [PantryItemModel] {
-        var shuffledPantries = pantries.shuffled()
+    func getExpiringItem() -> [PantryItemModel] {
+        let shuffledPantries = pantries.shuffled()
         
         if shuffledPantries.count >= 3 {
             return Array(shuffledPantries.prefix(3))

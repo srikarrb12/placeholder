@@ -32,7 +32,7 @@ struct SloganCard: View {
                 .frame(maxWidth: 120)
                 .padding(.leading, 10)
         }
-        .padding([.leading, .trailing], 20)
+        .padding([.leading, .trailing], 15)
     }
 }
 

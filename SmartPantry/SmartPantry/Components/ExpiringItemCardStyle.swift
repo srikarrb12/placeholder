@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeaturedItemView: View {
+struct ExpiringItemCardStyle: View {
     var title: String
     var expirationDate: Date
     func dateString(from date: Date, format: String = "yyyy-MM-dd") -> String {
@@ -54,7 +54,7 @@ struct FeaturedItemView: View {
 
 
 #Preview {
-    FeaturedItemView(title: "Title", expirationDate: Date.now)
+    ExpiringItemCardStyle(title: "Title", expirationDate: Date.now)
         .previewLayout(.sizeThatFits)
         .padding()
 }
