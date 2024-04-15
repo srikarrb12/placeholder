@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		347C3C2F2BCB6B9B0000BA80 /* AppTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347C3C2E2BCB6B9B0000BA80 /* AppTimerManager.swift */; };
 		35EAB84C2B983020009E462D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EAB84B2B983020009E462D /* CameraView.swift */; };
 		35F732DF2BB64B4100F994A6 /* ExpiringItemCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F732DE2BB64B4100F994A6 /* ExpiringItemCardStyle.swift */; };
 		35F732E12BB6701900F994A6 /* ExpiringItemCardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F732E02BB6701900F994A6 /* ExpiringItemCardSection.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		347C3C2E2BCB6B9B0000BA80 /* AppTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTimerManager.swift; sourceTree = "<group>"; };
 		3587D5742B9806F900D3F91D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		35EAB84B2B983020009E462D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		35F732DE2BB64B4100F994A6 /* ExpiringItemCardStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpiringItemCardStyle.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				4E25F2822B97C7300073DE98 /* Components */,
 				4E2E8C732B967F6B002A0840 /* SmartPantryApp.swift */,
 				4E2E8C752B967F6B002A0840 /* ContentView.swift */,
+				347C3C2E2BCB6B9B0000BA80 /* AppTimerManager.swift */,
 				4E59DAAC2B98562D009C7A63 /* ProfileView.swift */,
 				4E25F2852B980FF80073DE98 /* PantryView.swift */,
 				4E72212B2B98E67700D9A762 /* NotificationView.swift */,
@@ -215,6 +218,7 @@
 				4E25F2842B97C7590073DE98 /* PantryItem.swift in Sources */,
 				4E7221392B991F7E00D9A762 /* PantrySectionModel.swift in Sources */,
 				4E91741F2BB60661006318D7 /* SloganCard.swift in Sources */,
+				347C3C2F2BCB6B9B0000BA80 /* AppTimerManager.swift in Sources */,
 				4E59DAAD2B98562D009C7A63 /* ProfileView.swift in Sources */,
 				4E72212E2B98EA6A00D9A762 /* TitleBar.swift in Sources */,
 				4E3DEA4E2BB9BD2C00774FB4 /* ExpiringItemScrollStyle.swift in Sources */,

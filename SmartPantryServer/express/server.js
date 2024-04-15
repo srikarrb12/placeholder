@@ -3,6 +3,11 @@ import express, { json, urlencoded } from "express";
 import normalizePort from "normalize-port";
 import multer from "multer";
 import cors from "cors";
+import { Dropbox } from 'dropbox';
+import fetch from 'node-fetch';
+import rawBody from 'raw-body';
+import fs from 'fs';
+import path from 'path';
 import {
   GoogleGenerativeAI,
   HarmBlockThreshold,
@@ -12,11 +17,16 @@ import {
 config();
 const app = express();
 const upload = multer();
-
+app.use(express.text());
 app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(upload.single("image"));
+
+const dbx = new Dropbox({
+  accessToken: '*dropbox access token here*',
+  fetch: fetch
+});
 
 const port = normalizePort(process.env.PORT || "3000");
 
@@ -48,6 +58,30 @@ const model = genAI.getGenerativeModel({
 app.get("/", (req, res) => {
   res.send("Smart Pantry API");
 });
+
+app.post('/upload', (req, res) => {
+  try {
+    console.log("Uploading")
+    let data = JSON.stringify(req.body)
+    console.log(data)
+
+    data = data.replace(/\\n/g, '\n');
+
+    const buffer = Buffer.from(data.substring(2, data.length - 5), 'utf-8');
+    const dropboxDestination = '/logs.txt';
+    dbx.filesUpload({ path: dropboxDestination, contents: buffer, mode: { ".tag": "overwrite" } })
+          .then(response => {
+              console.log('File uploaded:', response);
+          })
+          .catch(error => {
+              console.error('Error uploading file:', error);
+          });
+  } catch (exception) {
+    console.log("Error occured: " + exception)
+  }  
+});
+
+
 
 app.post("/get-pantry", async (req, res) => {
   if (!req.file) {
