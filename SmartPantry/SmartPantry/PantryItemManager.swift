@@ -8,7 +8,8 @@
 import Foundation
 
 class PantryItemManager: ObservableObject {
-    @Published private(set) var pantries: [PantryItemModel] = []
+    static var manager = PantryItemManager()
+    @Published var pantries: [PantryItemModel] = []
     
     func addPantry(pantriesJson: [PantryItemJson]) {
         for item in pantriesJson {
@@ -23,6 +24,10 @@ class PantryItemManager: ObservableObject {
         }
     }
     
+    func deletePantryItem(byId id: String) {
+        pantries.removeAll { $0.id == id }
+    }
+    
     func clearPantry() {
         pantries = []
     }
@@ -34,6 +39,7 @@ class PantryItemManager: ObservableObject {
         } else {
             return shuffledPantries
         }
+        
     }
 
 }

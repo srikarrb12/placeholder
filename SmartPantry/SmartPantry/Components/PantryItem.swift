@@ -11,6 +11,8 @@ import SwiftUI
 struct PantryItem: View {
     var pantryItem: PantryItemModel
     var pantryItemSectionTitle: PantrySectionModel
+    var manager = PantryItemManager.manager
+    
     var body: some View {
         HStack(alignment: .center) {
             HStack {
@@ -36,12 +38,24 @@ struct PantryItem: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
             }.frame(maxWidth: .infinity, alignment: .leading)
 
-            Text(pantryItem.quantity + "pc")
-                .foregroundColor(.black)
-                .font(.subheadline)
-                .fontWeight(.semibold)
-                .padding(10)
-                .frame(minWidth: 60, alignment: .trailing)
+            
+            
+            VStack {
+                Button(action: {
+                    manager.deletePantryItem(byId: pantryItem.id)
+                }) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                                .padding(.trailing, 10)
+                
+                Text(pantryItem.quantity + "pc")
+                    .foregroundColor(.black)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .padding(10)
+                    .frame(minWidth: 60, alignment: .trailing)
+            }
         }
         .padding([.trailing, .leading], 10)
         .frame(maxWidth: 400)
@@ -76,6 +90,6 @@ struct PantryItem: View {
     }
 }
 
-#Preview {
-    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3", expiredDate: Date.now), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
-}
+//#Preview {
+//    PantryItem(pantryItem: PantryItemModel(id: "1", itemTitle: "Apple", loggedDate: Date(), quantity: "3", expiredDate: Date.now), pantryItemSectionTitle: REFRIGERATOR_SECTION_TITLE)
+//}
