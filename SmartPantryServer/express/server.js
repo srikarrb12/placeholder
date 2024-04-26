@@ -24,7 +24,7 @@ app.use(urlencoded({ extended: true }));
 app.use(upload.single("image"));
 
 const dbx = new Dropbox({
-  accessToken: '*dropbox access token here*',
+  accessToken: 'access token here',
   fetch: fetch
 });
 
